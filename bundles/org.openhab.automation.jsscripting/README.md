@@ -101,7 +101,7 @@ See [openhab-js](https://openhab.github.io/openhab-js) for a complete list of fu
 Note that `event` object is only available when the UI based rule was triggered by an event and is not manually run!
 Trying to access `event` on manual run does not work (and will lead to an error), use `this.event` instead (will be `undefined` in case of manual run).
 
-When you use "Item event" as trigger (i.e. "[item] received a command", "[item] was updated", "[item] changed"), there is additional context available for the action in a variable called `event`.
+When you use "Item event" as trigger (i.e. "[item] received a command", "[item] was updated", "[item] changed") or a trigger channel fires, there is additional context available for the action in a variable called `event`.
 
 This table gives an overview over the `event` object for most common trigger types:
 
@@ -112,6 +112,8 @@ This table gives an overview over the `event` object for most common trigger typ
 | `itemCommand`  | sub-class of [org.openhab.core.types.Command](https://www.openhab.org/javadoc/latest/org/openhab/core/types/command) | `[item] received a command`            | Command that triggered event                                                                                  | `receivedCommand`      |
 | `itemName`     | string                                                                                                               | all                                    | Name of Item that triggered event                                                                             | `triggeringItem.name`  |
 | `type`         | string                                                                                                               | all                                    | Type of event that triggered event (`"ItemStateEvent"`, `"ItemStateChangedEvent"`, `"ItemCommandEvent"`, ...) | N/A                    |
+| `event`        | string                                                                                                               | Channel Trigger                       | Name of event | receivedEvent                    |
+| `channel`        | string                                                                                                               | Channel Trigger                       | Name of channel | triggeringChannel                    |
 
 Note that in UI based rules `event.itemState`, `event.oldItemState`, and `event.itemCommand` are Java types (not JavaScript), and care must be taken when comparing these with JavaScript types:
 
